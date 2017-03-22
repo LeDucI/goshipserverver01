@@ -46,9 +46,9 @@ module.exports = router => {
 
 	router.post('/users', (req,res) => {
 
-		const phoneNumber = req.body.phonenumber;
-		const email = req.body.email;
-		const password = req.body.password;
+		const phoneNumber = req.body.mPhone;
+		const email = req.body.mEmail;
+		const password = req.body.mPassword;
 
 		if(!phoneNumber || !email || !password || !phoneNumber.trim() || !email.trim() || !password.trim()){
 			res.status(400).json({message: 'Invalid Request !'});
@@ -80,8 +80,8 @@ module.exports = router => {
 
 	router.put('/users/:id', (req,res) => {
 		if(checkToken(res)){
-			const oldPassword = req.body.password;
-			const newPassword = req.body.newPassword;
+			const oldPassword = req.body.mPassword;
+			const newPassword = req.body.mNewPassword;
 
 			if(!oldPassword || !newPassword || !oldPassword.trim() || !newPassword.trim()){
 				res.status(400).json({message: 'Invalid Request!'});
