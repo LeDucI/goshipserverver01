@@ -1,7 +1,7 @@
 module.exports = {
 	local:{
-		name:"goshipserverver01",
-		url:"mongodb://localhost/goshipserverver01",
+		name:"goshipbeta",
+		url:"mongodb://localhost/goship",
 		port: 27017
 	},
 	web:{

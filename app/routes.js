@@ -26,24 +26,22 @@ module.exports = router => {
 		res.end("Goship Node ver01")
 	});
 
-    router.post('/authenticate', (req, res) => {
- 
-        const credentials = auth(req);
-        //var credentials = {name: "binboss000@gmail.com", pass: "leduci010595"};
+    	router.post('/authenticate', (req, res) => {
 
-		if(!credentials) {
-			console.log(credentials);
-			res.status(400).json({message: 'Invalid Request!'});
+		const credentials = auth(req);
+		//console.log(credentials.name + " " + credentials.pass);
+		credentials.name, credentials.pass
+		if (!credentials) {
+			res.status(400).json({ message: 'Invalid Request !' });
 		} else {
 			login.loginUser(credentials.name, credentials.pass)
-				 .then(result => {
-				 	const token = jwt.sign(result, config.secret, {expiresIn: 1440});
-				 	res.status(result.status).json({message: result.message, token: token});
-				 })
-				 .catch(err => res.status(err.status).json({message: err.message}));
+			.then(result => {
+				const token = jwt.sign(result, config.secret, { expiresIn: 1440 });
+				res.status(result.status).json({ message: result.message, token: token });
+			})
+			.catch(err => res.status(err.status).json({ message: err.message }));
 		}
 	});
-
 	router.post('/users', (req,res) => {
 
 		const phoneNumber = req.body.mPhone;
